@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Spring Boot Thymeleaf</title>
+<link rel="stylesheet" th:href="@{~/css/index.css}" href="#">
+</head>
+<body>
+	<h1>Thymeleaf Index Page</h1>
+	<h1 th:text="${message}">Default Message</h1>
+	<img alt="" th:src="@{~/images/PremierLeague.png}">
+	<img alt="" th:src="@{~/images/Laliga.jpg}">
+</body>
+</html>
