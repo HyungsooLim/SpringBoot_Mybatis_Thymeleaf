@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/default :: head(|Thymeleaf - ${board}|)">
+<head th:replace="/fragments/default :: head(|Thymeleaf - ${board}List|)">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -8,10 +8,48 @@
 
 	<!-- header -->
 	<div th:replace="/fragments/default :: header"></div>
-	<!-- jumbo -->
-	<h1 th:text="${board}+' Page'"></h1>
-	<div th:replace="/fragments/default :: jumbo"></div>
-	
+	<!-- container -->
+	<div class="container">
+		<h3 th:text="${board}+' Page'"></h3>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Num</th>
+					<th scope="col">Title</th>
+					<th scope="col">Writer</th>
+					<th scope="col">Date</th>
+					<th scope="col">Hit</th>
+					<th scope="col">index</th>
+					<th scope="col">count</th>
+					<th scope="col">size</th>
+					<th scope="col">even</th>
+					<th scope="col">odd</th>
+					<th scope="col">first</th>
+					<th scope="col">last</th>
+					<!-- <th scope="col">Current</th> -->
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="VO, state : ${list}">
+					<th scope="row" th:text="${VO.num}"></th>
+										<!-- @{ |./${board}select| } -->
+					<td><a href="#" th:href="@{./select(num=${VO.num})}" th:text="${VO.title}"></a></td>
+					<td th:text="${VO.writer}"></td>
+					<td th:text="${VO.regDate}"></td>
+					<td th:text="${VO.hit}"></td>
+					<td th:text="${state.index}"></td> <!-- 인덱스 번호 0부터 시작 -->
+					<td th:text="${state.count}"></td> <!-- 횟수 번호 1부터 시작 -->
+					<td th:text="${state.size}"></td> <!-- 총 개수 list.size() -->
+					<td th:text="${state.even}"></td> <!-- 현재 count가 짝수인지 여부 -->
+					<td th:text="${state.odd}"></td> <!-- 현재 count가 홀수인지 여부 -->
+					<td th:text="${state.first}"></td> <!-- 현재가 첫번째인가? -->
+					<td th:text="${state.last}"></td> <!-- 현재가 마지막이냐? -->
+					<!-- <td th:text="${state.current}"></td> 현재 요소 -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 	<!-- footer -->
 	<div th:replace="/fragments/default :: footer"></div>
 </body>

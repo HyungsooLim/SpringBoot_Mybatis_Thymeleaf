@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/default :: head(|Thymeleaf - ${board}Select|)">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- header -->
+	<div th:replace="/fragments/default :: header"></div>
+	<!-- container -->
+	<div class="container">
+		<h3 th:text="${VO.title}"></h3>
+		<h3 th:text="${VO.writer}"></h3>
+		<button type="button" class="btn btn-primary">UPDATE</button>
+	</div>
+	<!-- footer -->
+	<div th:replace="/fragments/default :: footer"></div>
+</body>
+</html>

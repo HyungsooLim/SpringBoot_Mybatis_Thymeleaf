@@ -12,7 +12,7 @@ public class QnaController {
 	
 	@ModelAttribute("board")
 	public String getBoard() throws Exception {
-		return "QnA";
+		return "qna";
 	}
 
 	@GetMapping("list")
