@@ -6,9 +6,10 @@
 </head>
 <body>
 
-	<!-- header -->
+<!-- header -->
 	<div th:replace="/fragments/default :: header"></div>
-	<!-- container -->
+	
+<!-- container -->
 	<div class="container">
 		<h3 th:text="${board}+' Page'"></h3>
 		<table class="table">
@@ -48,9 +49,54 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		
+		<a th:href="@{./insert}" href="#" class="btn btn-primary">WRITE</a>		
+	</div>
+	<!-- Pager  -->
+	<div class="container d-flex justify-content-center">
+ 			<ul class="pagination">
+			    <li class="page-item">
+			    	<a  th:if="${pager.previous}" class="page-link pager" href="#" th:title="${pager.startPage-1}">Previous</a>
+			    	<span th:unless="${pager.previous}" class="page-link">Previous</span>
+			    </li>
+			    <li class="page-item" th:each="i : ${#numbers.sequence(pager.startPage, pager.lastPage)}">
+			    	<a class="page-link pager" href="#" th:title="${i}" th:text="${i}">1</a>
+			    </li>
+			    <li class="page-item">
+			    	<a th:if="${pager.next}" class="page-link pager" href="#" th:title="${pager.lastPage+1}">Next</a>
+			    	<span th:unless="${pager.next}" class="page-link">Next</span>
+			    </li>
+ 			</ul>
+	</div>
+	<!-- 검색 form -->
+	<div class="container d-flex justify-content-center">
+		<div class="input-group align-items-center">
+			<form id="frm" th:action="@{list}" class="form-inline">
+				<input type="hidden" name="curPage" value="1" id="curPage">
+					<div class="input-group-prepend">
+						<select class="form-control" name="kind" id="kind"
+							th:value="${pager.kind}">
+							<option class="sel"
+								th:selected="${pager.kind}=='Title'?true:false">Title</option>
+							<option class="sel"
+								th:selected="${pager.kind}=='Contents'?true:false">Contents</option>
+							<option class="sel"
+								th:selected="${pager.kind}=='Writer'?true:false">Writer</option>
+						</select>
+					</div>
+					<input type="text" class="form-control" name="search" id="search"
+						th:value="${pager.search}" placeholder="">
+					<div class="input-group-append">
+						<button class="btn btn-success" type="submit">Search</button>
+					</div>
+			</form>
+		</div>
 	</div>
 
 	<!-- footer -->
 	<div th:replace="/fragments/default :: footer"></div>
+<!-- JS -->
+	<script type="text/javascript" th:src="@{~/js/boardSearch.js}"></script>
 </body>
 </html>

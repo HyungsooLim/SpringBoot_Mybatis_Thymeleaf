@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/default :: head(|Thymeleaf - ${board}Select|)">
+<head th:replace="/fragments/default :: head(|Thymeleaf - ${board}Insert|)">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
 	<!-- header -->
 	<div th:replace="/fragments/default :: header"></div>
 	<!-- container -->
 	<div class="container">
-		<form id="frm" action="#">
+		<form id="frm" th:action="@{./insert}" method="POST">
 			<div class="form-row">
 				<div class="col">
-					Title <input type="text" id="title" class="form-control check" th:value="${VO.title}" name="title">
+					Title <input type="text" id="title" class="form-control check" name="title">
 				</div>
 				<div class="col">
-					Writer <input type="text" id="writer" class="form-control check" th:value="${VO.writer}" name="writer">
+					Writer <input type="text" id="writer" class="form-control check" name="writer" >
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents</label>
-				<textarea class="form-control check" id="contents" rows="20" th:text="${VO.contents}" name="contents"></textarea>
+				<textarea class="form-control check" id="contents" rows="20" name="contents"></textarea>
 			</div>
-			<!-- <input type="submit" id="btn" value="WRITE" class="btn btn-primary"> -->
+			<input type="submit" id="btn" value="WRITE" class="btn btn-primary">
 		</form>
 	</div>
 	<!-- footer -->

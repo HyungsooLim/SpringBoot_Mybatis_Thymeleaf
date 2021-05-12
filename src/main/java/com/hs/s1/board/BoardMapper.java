@@ -2,13 +2,15 @@ package com.hs.s1.board;
 
 import java.util.List;
 
+import com.hs.s1.util.Pager;
+
 public interface BoardMapper {
 
 	// List
-	public List<BoardVO> getList() throws Exception;
+	public List<BoardVO> getList(Pager pager) throws Exception;
 
 	// count
-	public Long getTotalCount() throws Exception;
+	public Long getTotalCount(Pager pager) throws Exception;
 
 	// Select
 	public BoardVO getSelect(BoardVO boardVO) throws Exception;
