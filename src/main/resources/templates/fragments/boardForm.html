@@ -10,7 +10,7 @@
 <!-- container -->
 	<div class="container">
 		<div th:fragment="form(act)">
-			<form id="frm" th:action="@{|./${act}|}" method="POST">
+			<form id="frm" th:action="@{|./${act}|}" method="POST" enctype="multipart/form-data">
 				<div class="form-row">
 					<div class="col">
 						<input th:value="${VO.num}" name="num" hidden="">
@@ -24,6 +24,12 @@
 					<label for="contents">Contents</label>
 					<textarea class="form-control check" id="contents" rows="20" th:text="${VO.contents}" name="contents"></textarea>
 				</div>
+				
+				<div>
+					<input class="form-control check" type="file" name="files">
+					<input class="form-control check" type="file" name="files">
+				</div>
+				
 				<button type="submit" id="btn" class="btn btn-primary" th:text="${act}"></button>
 			</form>
 		</div>

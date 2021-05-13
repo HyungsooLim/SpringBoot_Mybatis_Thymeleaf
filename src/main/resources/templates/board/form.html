@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/default :: head(|Thymeleaf - ${board}Update|)">
+<head th:replace="/fragments/summernote :: head(|Thymeleaf - ${board}|)">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -15,5 +16,17 @@
 	</div>
 <!-- footer -->
 	<div th:replace="/fragments/default :: footer"></div>
+	
+<!-- include summernote css/js -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	  $('#contents').summernote();
+	});
+	
+$('#contents').summernote({
+	  height: 300                 // set editor height
+	});
+</script>
 </body>
 </html>
