@@ -6,9 +6,10 @@
 </head>
 <body>
 
-	<!-- header -->
+<!-- header ------------------->
 	<div th:replace="/fragments/default :: header"></div>
-	<!-- container -->
+	
+<!-- container ---------------->
 	<div class="container">
 		<form id="frm" action="#">
 			<div class="form-row">
@@ -26,7 +27,13 @@
 			<!-- <input type="submit" id="btn" value="WRITE" class="btn btn-primary"> -->
 		</form>
 	</div>
-	<!-- footer -->
+	
+	<div class="container">	
+		<a th:href="@{./update(num=${VO.num})}" href="#" class="btn btn-primary">UPDATE</a>
+		<a th:href="@{./delete(num=${VO.num})}" href="#" class="btn btn-danger">DELETE</a>
+	</div>
+	
+<!-- footer ------------------->
 	<div th:replace="/fragments/default :: footer"></div>
 </body>
 </html>

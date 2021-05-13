@@ -47,7 +47,9 @@ public class NoticeController {
 	@GetMapping("insert")
 	public ModelAndView setInsert() throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("board/insert");
+		mv.addObject("VO", new BoardVO());
+		mv.addObject("act", "insert");
+		mv.setViewName("board/form");
 		return mv;
 	}
 	
@@ -55,6 +57,31 @@ public class NoticeController {
 	public ModelAndView setInsert(BoardVO boardVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setInsert(boardVO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setUpdate(BoardVO boardVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		boardVO = noticeService.getSelect(boardVO);
+		mv.addObject("VO", boardVO);
+		mv.addObject("act", "update");
+		mv.setViewName("board/form");
+		return mv;
+	}
+	
+	@PostMapping("update")
+	public ModelAndView setUpdate(BoardVO boardVO, ModelAndView mv) throws Exception {
+		int result = noticeService.setUpdate(boardVO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}	
+	
+	@GetMapping("delete")
+	public ModelAndView setDelete(BoardVO boardVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setDelete(boardVO);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}

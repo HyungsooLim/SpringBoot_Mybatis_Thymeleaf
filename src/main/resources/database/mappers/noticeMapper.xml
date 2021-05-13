@@ -28,14 +28,31 @@
 		limit #{startRow}, #{perPage}
 		<!-- limit 시작index번호(0부터 시작), 개수 -->
 	</select>
+	
 	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
 		select count(num) from NOTICE
 		<include refid="searcher"></include>
 	</select>
+	
 	<select id="getSelect" parameterType="BoardVO" resultType="NoticeVO">
 		select * from NOTICE where num=#{num}
 	</select>
+	
+	<update id="setHitUpdate" parameterType="BoardVO">
+		update NOTICE set hit=hit+1 where num=#{num}
+	</update>
+	
 	<insert id="setInsert" parameterType="BoardVO">
 		insert into NOTICE values(#{num}, #{title}, #{writer}, #{contents}, sysdate(), 0)
 	</insert>
+	
+	<update id="setUpdate" parameterType="BoardVO">
+		update NOTICE set title=#{title}, writer=#{writer}, contents=#{contents}
+		where num=#{num} 
+	</update>
+	
+	<delete id="setDelete" parameterType="BoardVO">
+		delete from NOTICE where num=#{num}
+	</delete>
+	
 </mapper>
