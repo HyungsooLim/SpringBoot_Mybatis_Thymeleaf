@@ -6,6 +6,7 @@
 <configuration>
  	<typeAliases>
 		<typeAlias type="com.hs.s1.board.BoardVO" alias="BoardVO"/>
+		<typeAlias type="com.hs.s1.board.BoardFileVO" alias="BoardFileVO"/>
 		<typeAlias type="com.hs.s1.board.notice.NoticeVO" alias="NoticeVO"/>
 		<typeAlias type="com.hs.s1.util.Pager" alias="Pager"/>
 	</typeAliases>
