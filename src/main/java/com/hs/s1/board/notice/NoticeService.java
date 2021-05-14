@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hs.s1.board.BoardFileVO;
@@ -38,6 +39,7 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public int setInsert(BoardVO boardVO, MultipartFile[] files) throws Exception {
 		// TODO Auto-generated method stub
 		
@@ -53,7 +55,7 @@ public class NoticeService implements BoardService {
 			BoardFileVO boardFileVO = new BoardFileVO();
 			boardFileVO.setFileName(fileName);
 			boardFileVO.setOgName(file.getOriginalFilename());
-			boardFileVO.setNum(boardVO.getNum());
+			boardFileVO.setNum(1000L);
 			noticeMapper.setFileInsert(boardFileVO);
 		}
 		
