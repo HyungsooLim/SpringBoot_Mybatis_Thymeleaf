@@ -11,8 +11,48 @@
 	<!-- header -->
 	<div th:replace="/fragments/default :: header"></div>
 	<!-- jumbo -->
-	<h1>Member Join Page</h1>
-	<div th:replace="/fragments/default :: jumbo"></div>
+	<h3>Member Join Page</h3>
+	<div class="container">
+		<form id="frm" action="./memberJoin" method="POST" enctype="multipart/form-data">
+			<div class="form-group">
+				<label for="userName">ID</label> 
+				<input type="text" class="form-control" id="userName" aria-describedby="userNameHelp" name="userName">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name="password">
+			</div>
+			<div class="form-group">
+				<label for="passwordCheck">Password Check</label> 
+				<input type="password" class="form-control" id="passwordCheck">
+			</div>
+			<div class="form-group">
+				<label for="name">Name</label> 
+				<input type="text" class="form-control etc" id="name" name="name">
+			</div>
+			
+			<div class="form-group">
+				<label for="email">Email</label> 
+				<input type="email" class="form-control etc" id="email" name="email">
+			</div>
+			<div class="form-group">
+				<label for="phone">Phone</label> 
+				<input type="tel" class="form-control etc" id="phone" name="phone">
+			</div>
+			<div class="form-group">
+				<label for="avatar">Avatar</label> 
+				<input type="file" class="form-control etc" id="avatar" name="avatar">
+			</div>
+			
+			<div class="form-group form-check">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1"> <label class="form-check-label" for="exampleCheck1">Check me out</label>
+			</div>
+			
+			<input type="submit" id="btn" value="JOIN" class="btn btn-primary">
+			
+			<!-- 조건에 모두 맞으면 OK 아니면 NO -->
+		</form>
+	</div>
 	
 	<!-- footer -->
 	<div th:replace="/fragments/default :: footer"></div>
