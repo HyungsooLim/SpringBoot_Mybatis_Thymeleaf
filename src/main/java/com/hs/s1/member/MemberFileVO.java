@@ -3,7 +3,7 @@ package com.hs.s1.member;
 import lombok.Data;
 
 @Data
-public class MemberFIleVO {
+public class MemberFileVO {
 
 	private Long fileNum;
 	private String userName;

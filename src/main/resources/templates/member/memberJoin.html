@@ -13,7 +13,7 @@
 	<!-- jumbo -->
 	<h3>Member Join Page</h3>
 	<div class="container">
-		<form id="frm" action="@{./join}" method="POST">
+		<form id="frm" th:action="@{./join}" method="POST">
 			<div class="form-group">
 				<label for="userName">ID</label> 
 				<input type="text" class="form-control" id="userName" aria-describedby="userNameHelp" name="userName">
