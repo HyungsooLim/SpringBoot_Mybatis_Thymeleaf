@@ -95,10 +95,12 @@ public class NoticeController {
 //	-----------------------------------------------------------------
 //	fileDown
 	@GetMapping("fileDown")
-	public ModelAndView fileDown(String fileName) throws Exception {
+	public ModelAndView fileDown(String fileName, String ogName) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("fileName", fileName);
+		mv.addObject("ogName", ogName);
 		mv.addObject("filePath", "/upload/notice/");
+		// view의 이름은 Bean의 이름과 일치
 		mv.setViewName("fileDown");
 		return mv;
 	}

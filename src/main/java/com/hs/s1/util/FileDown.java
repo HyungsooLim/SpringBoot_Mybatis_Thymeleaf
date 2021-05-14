@@ -37,8 +37,11 @@ public class FileDown extends AbstractView {
 		//model : ModelAndView의 Model 객체
 		String fileName = (String)model.get("fileName");
 		String filePath = (String)model.get("filePath");
+		String ogName = (String)model.get("ogName");
+		
 		System.out.println("fileName : "+fileName);
 		System.out.println("filePath : "+filePath);
+		System.out.println("ogName : "+ogName);
 		
 		String path = "classpath:/static/";
 		
@@ -54,7 +57,7 @@ public class FileDown extends AbstractView {
 		response.setContentLengthLong(file.length());
 		
 		//다운로드시 파일 이름을 인코딩 처리
-		fileName = URLEncoder.encode("file.png", "UTF-8");
+		fileName = URLEncoder.encode(ogName, "UTF-8");
 		
 		//header 설정
 		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\"" );
