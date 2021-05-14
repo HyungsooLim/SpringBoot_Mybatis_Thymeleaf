@@ -22,10 +22,11 @@
 			</div>
 			<div class="form-group">
 				<label for="contents">Contents</label>
-				<textarea class="form-control check" id="contents" rows="20" th:text="${VO.contents}" name="contents"></textarea>
+				<textarea class="form-control check" id="contents" rows="20" th:utext="${VO.contents}" name="contents"></textarea>
 			</div>
 			<p th:each="fileVO : ${VO.files}">
-				<a th:href="@{|~/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.ogName}"></a>
+				<!-- <a th:href="@{|~/upload/${board}/${fileVO.fileName}|}" th:text="${fileVO.ogName}"></a> -->
+				<a th:href="@{./fileDown(fileName=${fileVO.fileName})}" th:text="${fileVO.ogName}"></a>
 			</p>
 		</form>
 	</div>

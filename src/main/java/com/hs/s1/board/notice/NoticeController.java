@@ -92,4 +92,14 @@ public class NoticeController {
 		mv.setViewName("redirect:./list");
 		return mv;
 	}
+//	-----------------------------------------------------------------
+//	fileDown
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(String fileName) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("fileName", fileName);
+		mv.addObject("filePath", "/upload/notice/");
+		mv.setViewName("fileDown");
+		return mv;
+	}
 }
