@@ -6,5 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberMapper {
 
 //	setInsert======================================
-	public Integer setInsert() throws Exception;
+	public Integer setJoin(MemberVO memberVO) throws Exception;
+	
+	public MemberVO getLogin(MemberVO memberVO) throws Exception;
+	
+	
+	
+	
 }

@@ -1,5 +1,7 @@
 package com.hs.s1.home;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +17,21 @@ import com.hs.s1.board.BoardVO;
 @Controller
 public class HomeController {
 	@GetMapping("/")
-	public String home(Model model) throws Exception {
+	public String home(Model model, HttpSession session) throws Exception {
 		//model.addAttribute("message", "Thymeleaf Project");
 		BoardVO boardVO = new BoardVO();
 		boardVO.setNum(1L);
 		boardVO.setTitle("title1");
 		boardVO.setWriter("writer1");
 		
-		System.out.println(boardVO.toString());
+		if(session!=null) {			
+			System.out.println(session.getAttribute("member"));
+		}else {
+			System.out.println("==================");
+			System.out.println("=== No Session ===");
+			System.out.println("==================");
+		}
+		
 		return "index";
 	}
 }

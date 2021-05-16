@@ -9,7 +9,11 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
-	public Integer setInsert(MemberVO memberVO) throws Exception {
-		return memberMapper.setInsert();
+	public Integer setJoin(MemberVO memberVO) throws Exception {
+		return memberMapper.setJoin(memberVO);
+	}
+	
+	public MemberVO getLogin(MemberVO memberVO) throws Exception {
+		return memberMapper.getLogin(memberVO);
 	}
 }

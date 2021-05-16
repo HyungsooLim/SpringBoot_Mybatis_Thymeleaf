@@ -10,7 +10,21 @@
 	<div th:replace="/fragments/default :: header"></div>
 	<!-- jumbo -->
 	<h1>Member Login Page</h1>
-	<div th:replace="/fragments/default :: jumbo"></div>
+	<div class="container">
+		<form id="frm" th:action="@{./login}" method="POST">
+			<div class="form-group">
+				<label for="userName">ID</label> 
+				<input type="text" class="form-control" id="userName" aria-describedby="userNameHelp" name="userName">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" id="password" name="password">
+			</div>
+			
+			<input type="submit" id="btn" value="LOGIN" class="btn btn-primary">
+			
+		</form>
+	</div>
 	
 	<!-- footer -->
 	<div th:replace="/fragments/default :: footer"></div>
