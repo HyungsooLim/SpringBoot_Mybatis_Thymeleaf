@@ -24,14 +24,6 @@ public class HomeController {
 		boardVO.setTitle("title1");
 		boardVO.setWriter("writer1");
 		
-		if(session!=null) {			
-			System.out.println(session.getAttribute("member"));
-		}else {
-			System.out.println("==================");
-			System.out.println("=== No Session ===");
-			System.out.println("==================");
-		}
-		
 		return "index";
 	}
 }
