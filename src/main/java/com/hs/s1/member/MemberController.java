@@ -50,4 +50,11 @@ public class MemberController {
 		mv.setViewName("redirect:/");
 		return mv;
 	}
+	
+	@GetMapping("page")
+	public ModelAndView getMemberPage() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberPage");
+		return mv;
+	}
 }
