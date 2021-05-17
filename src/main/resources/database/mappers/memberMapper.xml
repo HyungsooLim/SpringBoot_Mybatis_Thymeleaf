@@ -6,10 +6,16 @@
 <mapper namespace="com.hs.s1.member.MemberMapper">
 	<insert id="setJoin" parameterType="MemberVO">
 		insert into MEMBER 
-		values(#{userName}, #{password}, #{name}, #{email}, #{phone})
+		values(#{username}, #{password}, #{name}, #{email}, #{phone})
+	</insert>
+	
+	<insert id="setFileJoin" parameterType="MemberFileVO">
+		insert into MEMBERFILES (username, fileName, ogName)
+		values(#{username}, #{fileName}, #{ogName})
 	</insert>
 	
 	<select id="getLogin" parameterType="MemberVO" resultType="MemberVO">
-		select * from MEMBER where userName=#{userName} and password=#{password}
+		select * from MEMBER 
+		where username=#{username} and password=#{password}
 	</select>
 </mapper>

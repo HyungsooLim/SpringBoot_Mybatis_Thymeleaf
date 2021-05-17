@@ -8,6 +8,8 @@ public interface MemberMapper {
 //	setInsert======================================
 	public Integer setJoin(MemberVO memberVO) throws Exception;
 	
+	public Integer setFileJoin(MemberFileVO memberFileVO) throws Exception;
+	
 	public MemberVO getLogin(MemberVO memberVO) throws Exception;
 	
 	

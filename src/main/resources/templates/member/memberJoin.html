@@ -13,10 +13,10 @@
 	<!-- jumbo -->
 	<h3>Member Join Page</h3>
 	<div class="container">
-		<form id="frm" th:action="@{./join}" method="POST">
+		<form id="frm" th:action="@{./join}" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="userName">ID</label> 
-				<input type="text" class="form-control" id="userName" aria-describedby="userNameHelp" name="userName">
+				<label for="username">ID</label> 
+				<input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username">
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
@@ -39,10 +39,10 @@
 				<label for="phone">Phone</label> 
 				<input type="tel" class="form-control etc" id="phone" name="phone">
 			</div>
-			<!-- <div class="form-group">
-				<label for="avatar">File</label> 
+			<div class="form-group">
+				<label for="file">File</label> 
 				<input type="file" class="form-control etc" id="file" name="file">
-			</div> -->
+			</div>
 			
 			<input type="submit" id="btn" value="JOIN" class="btn btn-primary">
 			

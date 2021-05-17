@@ -34,7 +34,13 @@
 				<tr th:each="VO, state : ${list}">
 					<th scope="row" th:text="${VO.num}"></th>
 										<!-- @{ |./${board}select| } -->
-					<td><a href="#" th:href="@{./select(num=${VO.num})}" th:text="${VO.title}"></a></td>
+					<td th:if="${board} == 'qna'">
+						<span th:if="${VO.depth} != 0" th:each="i : ${#numbers.sequence(1, VO.depth)}">-</span>
+						<a href="#" th:href="@{./select(num=${VO.num})}" th:text="${VO.title}"></a>
+					</td>
+					<td th:unless="${board} == 'qna'">
+						<a href="#" th:href="@{./select(num=${VO.num})}" th:text="${VO.title}"></a>
+					</td>
 					<td th:text="${VO.writer}"></td>
 					<td th:text="${VO.regDate}"></td>
 					<td th:text="${VO.hit}"></td>
@@ -49,9 +55,12 @@
 				</tr>
 			</tbody>
 		</table>
-		<a th:href="@{./insert}" href="#" class="btn btn-primary">WRITE</a>		
+		<div th:if="${session.member} != null">
+			<a th:if="${board == 'notice' and session.member.username  == 'admin'}" th:href="@{./insert}" href="#" class="btn btn-primary">WRITE</a>
+			<a th:if="${board != 'notice'}" th:href="@{./insert}" href="#" class="btn btn-primary">WRITE</a>		
+		</div>
 	</div>
-	<a th:href="@{./fileDown}" href="#" class="btn btn-primary">FileDown</a>
+	<!-- <a th:href="@{./fileDown}" href="#" class="btn btn-primary">FileDown</a> -->
 	<!-- Pager  -->
 	<div class="container d-flex justify-content-center">
  			<ul class="pagination">

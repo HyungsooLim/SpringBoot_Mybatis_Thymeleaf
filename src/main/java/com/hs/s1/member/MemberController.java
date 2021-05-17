@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -22,16 +23,18 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public ModelAndView setJoin(MemberVO memberVO) throws Exception {
+	public ModelAndView setJoin(MemberVO memberVO, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.setJoin(memberVO);
+		int result = memberService.setJoin(memberVO, file);
 		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
 	@GetMapping("login")
-	public String getLogin() throws Exception {
-		return "member/memberLogin";
+	public ModelAndView getLogin() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/memberLogin");
+		return mv;
 	}
 	
 	@PostMapping("login")

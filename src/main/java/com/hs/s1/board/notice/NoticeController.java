@@ -2,6 +2,8 @@ package com.hs.s1.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hs.s1.board.BoardVO;
+import com.hs.s1.member.MemberVO;
 import com.hs.s1.util.Pager;
 
 @Controller
@@ -46,11 +49,23 @@ public class NoticeController {
 	}
 	
 	@GetMapping("insert")
-	public ModelAndView setInsert() throws Exception {
+	public ModelAndView setInsert(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("VO", new BoardVO());
 		mv.addObject("act", "insert");
-		mv.setViewName("board/form");
+		Object obj = session.getAttribute("member");
+		MemberVO memberVO = null;
+		String path = "redirect:/member/login";
+		//if(obj != null) {}
+		if(obj instanceof MemberVO) {
+			memberVO = (MemberVO)obj;
+			
+			if(memberVO.getUsername().equals("admin")) {
+				path="board/form";
+			}
+		}
+		
+		mv.setViewName(path);
 		return mv;
 	}
 	

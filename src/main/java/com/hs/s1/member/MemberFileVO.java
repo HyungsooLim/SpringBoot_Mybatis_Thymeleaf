@@ -6,7 +6,7 @@ import lombok.Data;
 public class MemberFileVO {
 
 	private Long fileNum;
-	private String userName;
+	private String username;
 	private String fileName;
 	private String ogName;
 }
