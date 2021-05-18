@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,9 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@Value("${board.notice.filePath}")
+	private String filePath;
+	
 	@ModelAttribute("board")
 	public String getBoard() throws Exception {
 		return "notice";
@@ -31,6 +35,8 @@ public class NoticeController {
 
 	@GetMapping("list")
 	public ModelAndView getList(Pager pager) throws Exception {
+		System.out.println("FilePath : "+filePath);
+		
 		ModelAndView mv = new ModelAndView();
 		List<BoardVO> ar = noticeService.getList(pager);
 		mv.addObject("pager", pager);
@@ -114,7 +120,7 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("fileName", fileName);
 		mv.addObject("ogName", ogName);
-		mv.addObject("filePath", "/upload/notice/");
+		mv.addObject("filePath", filePath);
 		// view의 이름은 Bean의 이름과 일치
 		mv.setViewName("fileDown");
 		return mv;
