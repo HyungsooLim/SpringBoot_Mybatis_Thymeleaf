@@ -1,6 +1,7 @@
 package com.hs.s1.board.qna;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hs.s1.board.BoardFileVO;
 import com.hs.s1.board.BoardService;
 import com.hs.s1.board.BoardVO;
+import com.hs.s1.exception.MyException;
 import com.hs.s1.util.FileManager;
 import com.hs.s1.util.Pager;
 
@@ -67,7 +69,12 @@ public class QnaService implements BoardService {
 	@Override
 	public int setUpdate(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return qnaMapper.setUpdate(boardVO);
+//		Random random = new Random();
+//		int result = random.nextInt(1);
+//		if(result==0) {
+//			throw new MyException("Update Fail");
+//		}
+		return qnaMapper.setUpdate(boardVO); //result;
 	}
 
 	@Override
