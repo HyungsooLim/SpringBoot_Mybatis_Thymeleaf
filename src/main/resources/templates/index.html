@@ -8,7 +8,9 @@
 	<div th:replace="/fragments/default :: header"></div>
 
 	<div th:replace="/fragments/default :: jumbo"></div>
-
+	<h3 th:if="${session.member}!=null" th:text="${session.member.username}"></h3>
+	
+	
 	<footer th:replace="/fragments/default :: footer"></footer>
 
 </body>
