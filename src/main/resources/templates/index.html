@@ -10,6 +10,7 @@
 	<div th:replace="/fragments/default :: jumbo"></div>
 	<!-- message #{message의 key값}-->
 	<h3 th:text="#{hello}"></h3>
+	<h3 th:text="#{user.welcome(${user}, ${msg})}"></h3>
 	<h3 th:text="|User : ${session.member}|"></h3>
 	<footer th:replace="/fragments/default :: footer"></footer>
 
