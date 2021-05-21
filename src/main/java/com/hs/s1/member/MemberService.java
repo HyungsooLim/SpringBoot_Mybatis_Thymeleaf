@@ -59,13 +59,25 @@ public class MemberService {
 			result = true;
 		}
 		
+		//username 중복 여부
+		MemberVO checkMember = memberMapper.getUsername(memberVO);
+		if(checkMember != null) {
+			errors.rejectValue("username", "memberVO.username.memberCheck");
+			result = true;
+		}
+		
+		//admin, administrator 안되게 메세지
+		MemberVO adminCheck = memberMapper.getUsername(memberVO);
+		String strAdmin = adminCheck.getUsername();
+		if(strAdmin.equals("admin") || strAdmin.equals("administrator")) {
+			errors.rejectValue("username", "memberVO.username.adminCheck");
+		}
+		
+		
+		
 		
 		return result;
 	}
-	
-	
-	
-	
 	
 	
 	
