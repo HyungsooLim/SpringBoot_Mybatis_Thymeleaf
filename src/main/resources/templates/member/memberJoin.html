@@ -21,11 +21,13 @@
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
-				<input type="password" class="form-control" id="password" name="password">
+				<input type="password" class="form-control" id="password" name="password" th:field="*{password}">
+				<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 			</div>
 			<div class="form-group">
 				<label for="passwordCheck">Password Check</label> 
-				<input type="password" class="form-control" id="passwordCheck">
+				<input type="password" class="form-control" id="passwordCheck" th:field="*{passwordCheck}">
+				<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}"></p>
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label> 
@@ -35,11 +37,13 @@
 			
 			<div class="form-group">
 				<label for="email">Email</label> 
-				<input type="email" class="form-control etc" id="email" name="email">
+				<input type="email" class="form-control etc" id="email" th:field="*{email}">
+				<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 			</div>
 			<div class="form-group">
 				<label for="phone">Phone</label> 
-				<input type="tel" class="form-control etc" id="phone" name="phone">
+				<input type="tel" class="form-control etc" id="phone" th:field="*{phone}">
+				<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
 			</div>
 			<div class="form-group">
 				<label for="file">File</label> 

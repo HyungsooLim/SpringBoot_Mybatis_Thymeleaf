@@ -3,6 +3,7 @@ package com.hs.s1.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hs.s1.util.FileManager;
@@ -39,4 +40,33 @@ public class MemberService {
 	public MemberVO getLogin(MemberVO memberVO) throws Exception {
 		return memberMapper.getLogin(memberVO);
 	}
+	
+//	Custom Validation method ===================================================
+	public boolean memberError(MemberVO memberVO, Errors errors) throws Exception {
+		boolean result = false;
+		
+		// 기본 제공 검증 결과 가져와서 담기
+		// 기본 검증은 이미 Controller에서 끝남
+//		if(errors.hasErrors()) {
+//			result = true;
+//		}
+		result = errors.hasErrors();
+		
+		//password 일치 여부 검증
+		if(!memberVO.getPassword().equals(memberVO.getPasswordCheck())) {
+							 //form path, field // properties의 custom key 값
+			errors.rejectValue("passwordCheck", "memberVO.password.notEqual");
+			result = true;
+		}
+		
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

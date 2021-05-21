@@ -32,7 +32,11 @@ public class MemberController {
 //		int result = memberService.setJoin(memberVO, file);
 		mv.setViewName("redirect:/");
 		
-		if(errors.hasErrors()) {
+//		if(errors.hasErrors()) {
+//			mv.setViewName("member/memberJoin");
+//		}
+		
+		if(memberService.memberError(memberVO, errors)) {
 			mv.setViewName("member/memberJoin");
 		}
 		
