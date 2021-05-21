@@ -13,10 +13,11 @@
 	<!-- jumbo -->
 	<h3>Member Join Page</h3>
 	<div class="container">
-		<form id="frm" th:action="@{./join}" method="POST" enctype="multipart/form-data">
+		<form id="frm" th:object="${memberVO}" th:action="@{./join}" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="username">ID</label> 
-				<input type="text" required="required" class="form-control" id="username" aria-describedby="usernameHelp" name="username">
+				<input type="text" class="form-control" id="username" aria-describedby="usernameHelp" name="username">
+				<!-- <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p> -->
 			</div>
 			<div class="form-group">
 				<label for="password">Password</label>
@@ -28,7 +29,8 @@
 			</div>
 			<div class="form-group">
 				<label for="name">Name</label> 
-				<input type="text" class="form-control etc" id="name" name="name">
+				<input type="text" class="form-control etc" id="name" name="name" th:field="*{name}">
+				<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 			</div>
 			
 			<div class="form-group">
