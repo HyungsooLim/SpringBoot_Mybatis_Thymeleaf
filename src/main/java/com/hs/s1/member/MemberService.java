@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -16,12 +17,19 @@ public class MemberService implements UserDetailsService {
 
 	@Autowired
 	private MemberMapper memberMapper;
-	
 	@Autowired
 	private FileManager fileManager;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Transactional(rollbackFor = Exception.class)
 	public Integer setJoin(MemberVO memberVO, MultipartFile multipartFile) throws Exception {
+		// 0. 사전작업
+		// a. password 암호화
+		memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+		// b. 사용자 활성화
+		memberVO.setEnabled(true);
+		
 		// 1. MEMBER table save
 		int result = memberMapper.setJoin(memberVO);
 		// 2. HDD save
@@ -91,4 +99,4 @@ public class MemberService implements UserDetailsService {
 	
 
 	
-}
+}// =============

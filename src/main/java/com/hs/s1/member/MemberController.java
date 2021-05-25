@@ -29,7 +29,7 @@ public class MemberController {
 	@PostMapping("join")
 	public ModelAndView setJoin(@Valid MemberVO memberVO, Errors errors, MultipartFile file) throws Exception {
 		ModelAndView mv = new ModelAndView();
-//		int result = memberService.setJoin(memberVO, file);
+		int result = memberService.setJoin(memberVO, file);
 		mv.setViewName("redirect:/");
 		
 //		if(errors.hasErrors()) {
@@ -48,6 +48,12 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/memberLogin");
 		return mv;
+	}
+	
+	@GetMapping("memberLoginResult")
+	public String memberLoginResult() throws Exception {
+		System.out.println("===== Login 성공 =====");
+		return "redirect:/";
 	}
 	
 //	@PostMapping("login")
