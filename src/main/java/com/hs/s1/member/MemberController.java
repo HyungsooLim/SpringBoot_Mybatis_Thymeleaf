@@ -50,14 +50,14 @@ public class MemberController {
 		return mv;
 	}
 	
-	@PostMapping("login")
-	public ModelAndView getLogin(HttpSession session, MemberVO memberVO) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		memberVO = memberService.getLogin(memberVO);
-		session.setAttribute("member", memberVO);
-		mv.setViewName("redirect:/");
-		return mv;
-	}
+//	@PostMapping("login")
+//	public ModelAndView getLogin(HttpSession session, MemberVO memberVO) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		memberVO = memberService.getLogin(memberVO);
+//		session.setAttribute("member", memberVO);
+//		mv.setViewName("redirect:/");
+//		return mv;
+//	}
 	
 	@GetMapping("logout")
 	public ModelAndView getLogout(HttpSession session) throws Exception {

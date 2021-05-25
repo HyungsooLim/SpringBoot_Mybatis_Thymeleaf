@@ -1,6 +1,9 @@
 package com.hs.s1.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
@@ -9,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hs.s1.util.FileManager;
 
 @Service
-public class MemberService {
+public class MemberService implements UserDetailsService {
 
 	@Autowired
 	private MemberMapper memberMapper;
@@ -37,9 +40,19 @@ public class MemberService {
 		return result;
 	}
 	
-	public MemberVO getLogin(MemberVO memberVO) throws Exception {
-		return memberMapper.getLogin(memberVO);
+//	Security =====================================================================
+	// Login 메서드, 원래 Login 메서드는 사용 X
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUsername(username);
+		memberVO = memberMapper.getLogin(memberVO);
+		return memberVO;
 	}
+//	===========================================================================	
+//	public MemberVO getLogin(MemberVO memberVO) throws Exception {
+//		return memberMapper.getLogin(memberVO);
+//	}
 	
 //	Custom Validation method ===================================================
 	public boolean memberError(MemberVO memberVO, Errors errors) throws Exception {
@@ -73,12 +86,9 @@ public class MemberService {
 			errors.rejectValue("username", "memberVO.username.adminCheck");
 		}
 		
-		
-		
-		
 		return result;
 	}
 	
-	
+
 	
 }
