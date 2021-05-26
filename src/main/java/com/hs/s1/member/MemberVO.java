@@ -53,28 +53,31 @@ public class MemberVO implements UserDetails{
 		return authorities;
 	}
 
+	// 계정이 만료되지 됐는지?
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-
+	
+	// 계정이 잠겨있는지?
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
+	
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return this.enabled;
 	}
 	
 }

@@ -35,12 +35,12 @@
 					<a class="nav-link" th:href="@{~/qna/list}" href="/qna/list">QnA</a>
 				</li>
 				<li class="nav-item">
-					<a th:if="${session.member} == null" class="nav-link" th:href="@{~/member/join}" href="/member/join">Join</a>
-					<a th:unless="${session.member} == null" class="nav-link" th:href="@{~/member/page}" href="/member/page">My Page</a>
+					<a th:if="${session.SPRING_SECURITY_CONTEXT == null}" class="nav-link" th:href="@{~/member/join}" href="/member/join">Join</a>
+					<a th:unless="${session.SPRING_SECURITY_CONTEXT == null}" class="nav-link" th:href="@{~/member/page}" href="/member/page">My Page</a>
 				</li>
 				<li class="nav-item">
-					<a th:if="${session.member} == null" class="nav-link" th:href="@{~/member/login}" href="/member/login">Login</a>
-					<a th:unless="${session.member} == null" class="nav-link" th:href="@{~/member/logout}" href="/member/logout">Logout</a>
+					<a th:if="${session.SPRING_SECURITY_CONTEXT == null}" class="nav-link" th:href="@{~/member/login}" href="/member/login">Login</a>
+					<a th:unless="${session.SPRING_SECURITY_CONTEXT == null}" class="nav-link" th:href="@{~/member/logout}" href="/member/logout">Logout</a>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">

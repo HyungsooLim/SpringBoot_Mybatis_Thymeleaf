@@ -1,5 +1,8 @@
 package com.hs.s1.member;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,7 +35,14 @@ public class MemberService implements UserDetailsService {
 		
 		// 1. MEMBER table save
 		int result = memberMapper.setJoin(memberVO);
-		// 2. HDD save
+		
+		// 2. Role Table 저장
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("username", memberVO.getUsername());
+		map.put("roleName", "ROLE_MEMBER");
+		result = memberMapper.setMemberRole(map);
+		
+		// 3. HDD save
 		String filePath="upload/member/";
 		if(multipartFile.getSize() != 0) {
 			String fileName = fileManager.saveFile(multipartFile, filePath);
@@ -50,6 +60,7 @@ public class MemberService implements UserDetailsService {
 	
 //	Security =====================================================================
 	// Login 메서드, 원래 Login 메서드는 사용 X
+	// 개발자가 호출 X
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		MemberVO memberVO = new MemberVO();

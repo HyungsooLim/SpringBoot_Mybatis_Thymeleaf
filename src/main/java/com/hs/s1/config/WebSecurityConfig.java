@@ -37,6 +37,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// URL에 따른 로그인, 권한 설정
 		http
+			// 권한 에러 발생(403)
+			.exceptionHandling()
+				.accessDeniedPage(null)		// error page 경로
+				.accessDeniedHandler(null)	// error 처리 class
+			.and()
 			//csrf라는 토큰을 사용 X -> cross origin?
 			.cors().and()
 			.csrf().disable()
@@ -49,17 +54,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
 				.anyRequest().authenticated()
-				.and()
+			.and()
 			// 로그인 폼에 관한 메서드
 			// 폼 따로 없으면 default login form 으로 이동
 			.formLogin()
 				.loginPage("/member/login")
 				// 로그인 성공시 요청 보낼 URL 설정
 				.defaultSuccessUrl("/member/memberLoginResult")
+				// 로그인 실패 처리
+				.failureUrl("/member/memberLoginFail")
 					.permitAll()
-				.and()
-//				.logout()
-				;
+			.and()
+			.logout()
+				.logoutUrl("/member/logout")
+				.logoutSuccessUrl("/")
+				// session invalidate
+				.invalidateHttpSession(true)
+				// 쿠키 지우기
+				.deleteCookies("JSESSIONID")
+				.permitAll()
+			;
 	}
 
 }
