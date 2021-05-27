@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.hs.s1.security.SecurityException;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -38,9 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// URL에 따른 로그인, 권한 설정
 		http
 			// 권한 에러 발생(403)
+			// 사용하지 않으면 기본제공 에러 처리방법 사용
 			.exceptionHandling()
-				.accessDeniedPage(null)		// error page 경로
-				.accessDeniedHandler(null)	// error 처리 class
+//				.accessDeniedPage("/member/error")				// error page 경로 <- 이게 더 편할듯
+				.accessDeniedHandler(new SecurityException())	// error 처리 Class
 			.and()
 			//csrf라는 토큰을 사용 X -> cross origin?
 			.cors().and()
@@ -62,7 +65,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// 로그인 성공시 요청 보낼 URL 설정
 				.defaultSuccessUrl("/member/memberLoginResult")
 				// 로그인 실패 처리
-				.failureUrl("/member/memberLoginFail")
+//				.failureUrl("/member/memberLoginFail")	// error page 경로
+				.failureHandler(null)					// error 처리 Class
 					.permitAll()
 			.and()
 			.logout()
