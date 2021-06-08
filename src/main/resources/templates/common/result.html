@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script th:inline="javascript">
-	/*<![CDATA[*/
-	var result = /*[[${message}]]*/;
-	var path = /*[[${path}]]*/;
-	alert(result);
-	location.href=path;
-	/*]]>*/
+<script type="text/javascript" th:inline="javascript">
+	let message = [[${message}]];
+	alert(message);
+	location.href=[[${path}]];
 </script>
 </head>
 <body>

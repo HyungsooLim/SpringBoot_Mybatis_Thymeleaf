@@ -57,23 +57,26 @@ public class NoticeController {
 	}
 	
 	@GetMapping("insert")
-	public ModelAndView setInsert(HttpSession session) throws Exception {
+	public ModelAndView setInsert() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("VO", new BoardVO());
 		mv.addObject("act", "insert");
-		Object obj = session.getAttribute("member");
-		MemberVO memberVO = null;
-		String path = "redirect:/member/login";
-		//if(obj != null) {}
-		if(obj instanceof MemberVO) {
-			memberVO = (MemberVO)obj;
-			
-			if(memberVO.getUsername().equals("admin")) {
-				path="board/form";
-			}
-		}
+		// result 코드
+//		mv.addObject("message", "Not Administrator");
+//		mv.addObject("path", "./list");
+//		Object obj = session.getAttribute("member");
+//		MemberVO memberVO = null;
+//		String path = "redirect:/member/login";
+//		//if(obj != null) {}
+//		if(obj instanceof MemberVO) {
+//			memberVO = (MemberVO)obj;
+//			
+//			if(memberVO.getUsername().equals("admin")) {
+//				path="board/form";
+//			}
+//		}
 		
-		mv.setViewName(path);
+		mv.setViewName("board/form");
 		return mv;
 	}
 	
