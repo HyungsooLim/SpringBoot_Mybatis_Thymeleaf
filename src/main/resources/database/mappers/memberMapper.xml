@@ -5,8 +5,17 @@
     
 <mapper namespace="com.hs.s1.member.MemberMapper">
 	<insert id="setJoin" parameterType="MemberVO">
-		insert into MEMBER 
-		values(#{username}, #{password}, #{name}, #{email}, #{phone})
+		insert into MEMBER(username, password, name, email, phone, enabled) 
+		values(#{username}, #{password}, #{name}, #{email}, #{phone}, #{enabled})
+	</insert>
+	
+	<insert id="setMemberRole" parameterType="java.util.Map">
+		insert into member_role(username, id)
+		values(
+			#{username}, (
+				select id from role where roleName=#{roleName}
+			)
+		)
 	</insert>
 	
 	<insert id="setFileJoin" parameterType="MemberFileVO">
@@ -14,10 +23,26 @@
 		values(#{username}, #{fileName}, #{ogName})
 	</insert>
 	
-	<select id="getLogin" parameterType="MemberVO" resultType="MemberVO">
-		select * from MEMBER 
-		where username=#{username} and password=#{password}
+	<select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
+		select M.*, R.* from member M
+		inner join member_role MR
+		on M.username=MR.username
+		inner join role R
+		on MR.id=R.id
+		where M.username=#{username};
 	</select>
+	<resultMap type="MemberVO" id="getLoginResult">
+		<id column="username" property="username"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="phone" property="phone"/>
+		<result column="enabled" property="enabled"/>
+		<collection property="roles" javaType="java.util.List" ofType="RoleVO">
+			<id column="id" property="id"/>
+			<result column="roleName" property="roleName"/>
+		</collection>
+	</resultMap>
 	
 	<select id="getUsername" parameterType="MemberVO" resultType="MemberVO">
 		select * from MEMBER
